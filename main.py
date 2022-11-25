@@ -25,10 +25,10 @@ if __name__ == '__main__':
     df["ema_400_incremental"] = 0
 
     exit_flag = False
-    interval_start = 0
+    interval_start = -400
     interval_end = interval_start + period + 1
     while not exit_flag:
-        df2 = df[interval_start:interval_end].copy()
+        df2 = df[max(0, interval_start):interval_end].copy()
         stock = Sdf.retype(df2.copy())
 
         df2["ema_400_incremental"] = TA.EMA(stock, period=period).copy()
